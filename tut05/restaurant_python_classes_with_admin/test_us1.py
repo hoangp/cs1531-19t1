@@ -17,25 +17,27 @@ class TestUS1(object):
         assert len(items) == 0
 
     def test_single_item(self):
+        # arrange
         menu = Menu()
         menu.add_item("Mocha", 10, True, "Best Mocha", ["Milk", "Chocolate", "Coffee"], ["nut-free", "vegan", "glutten-free"])
-
+        # act
         system = RestaurantSystem(self.admin_system, menu)
         items = system.get_menu_items()
-
+        # assert
         assert len(items) == 1
         assert "Mocha" in items
         assert items["Mocha"] == Item("Mocha", 10, True, "Best Mocha", ["Milk", "Chocolate", "Coffee"], ["nut-free", "vegan", "glutten-free"])
 
 
     def test_single_item_alt1(self):
+        # arrange
         menu = Menu()
         mocha = Item("Mocha", 10, True, "Best Mocha", ["Milk", "Chocolate", "Coffee"], ["nut-free", "vegan", "glutten-free"])
         menu.add_item(mocha.name, mocha.price, mocha.is_available, mocha.description, mocha.ingredients, mocha.tags)
-
+        # act
         system = RestaurantSystem(self.admin_system, menu)
         items = system.get_menu_items()
-
+        # assert
         assert len(items) == 1
         assert "Mocha" in items
         assert items["Mocha"] == mocha
@@ -43,12 +45,13 @@ class TestUS1(object):
 
     # Alternative if you have not validated the __eq__ implementation in class Item (but really should)
     def test_single_tiem_alt2(self):
+        # arrange
         menu = Menu()
         menu.add_item("Mocha", 10, True, "Best Mocha", ["Milk", "Chocolate", "Coffee"], ["nut-free", "vegan", "glutten-free"])
-
+        # act
         system = RestaurantSystem(self.admin_system, menu)
         items = system.get_menu_items()
-
+        # assert
         assert len(items) == 1
         assert "Mocha" in items
 
